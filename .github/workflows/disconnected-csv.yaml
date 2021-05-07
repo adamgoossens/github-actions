@@ -1,0 +1,21 @@
+name: Test Actions
+on:
+  push:
+    paths:
+      - disconnected-csv/**
+
+  pull_request:
+    paths:
+      - disconnected-csv/**
+jobs:
+  disconnected-csv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: ./disconnected-csv
+        with:
+          CSV_FILE: ./disconnected-csv/tests/sample-clusterserviceversion.yaml
+          TAGS_TO_DIGESTS: 1
+
